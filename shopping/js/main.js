@@ -16,7 +16,7 @@ function getTotal(list) {
 function setList(list) {
     let table = '<thead><tr><td>Description</td><td>Quantity</td><td>Value</td><td>Action</td></tr></thead><tbody>';
     for (let key in list) {
-        table += `<tr><td>${formatDescricao(list[key].descricao)}</td><td>${list[key].quantity}</td><td>${formatValue(list[key].value)}
+        table += `<tr><td>${formatDescricao(list[key].descricao)}</td><td>${formatQuantity(list[key].quantity)}</td><td>${formatValue(list[key].value)}
         </td><td><button class="btn btn-success" onclick="setUpdate(${key});">Edit</button>    <button class="btn btn-danger" onclick="deleteData(${key});">delete</button></td></tr>`
     }
     table += '<tbody/>';
@@ -27,6 +27,9 @@ function formatDescricao(descricao) {
     var str = descricao.toLowerCase();
     str = `${str.charAt(0).toUpperCase()}${str.slice(1)}`;
     return str;
+}
+function formatQuantity(quantity) {
+   return parseInt(quantity);
 }
 
 function formatValue(value) {
@@ -82,6 +85,25 @@ function deleteData(id) {
         list = arrAuxIni.concat(arrAuxEnd);
         setList(list);
         
+    }
+}
+function mensagemError(value){
+    mensagem: {[
+        errors += `<p>Preencha a Descricao</p>`
+    ]}
+    return errors[this.value];
+}
+function validation(){
+    let descricao = document.getElementById('descricao').value;
+    let quantity = document.getElementById('quantity').value;
+    let value = document.getElementById('value').value;
+    let errors = "";
+    if (descricao === ""){
+          return mensagemError(0);
+        ;
+    }
+    if (quantity === ""){
+        return mensagemError(0);
     }
 }
 setList(list);
